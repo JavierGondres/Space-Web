@@ -1,15 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation} from "react-router-dom";
 
 import { styled } from "@mui/material/styles";
 import {
   Avatar,
-  Box,
   Container,
   Grid,
-  Stack,
-  Tab,
-  Tabs,
-  Typography,
 } from "@mui/material";
 
 import logo from "../../public/assets/nav/logo.svg";
@@ -17,30 +12,22 @@ import logo from "../../public/assets/nav/logo.svg";
 // react hooks
 import { useCallback, useState } from "react";
 
-const NavParentTab = styled(Tabs)(({ theme }) => ({
-  "& .MuiTabs-indicator": {
-    backgroundColor: theme.palette.primary.light,
-  },
-}));
+// Nav components
+import { NavParentTab, NavTab, NavTabsContainer  } from "./navbarComponents/navbarComponents";
 
-const NavTab = styled(Tab)(({ theme }) => ({
+
+
+const NavLink = styled(Link)(({theme}) => ({
   color: theme.palette.primary.light,
-  fontSize: "0.8rem",
-  marginRight: 1,
-  "&.Mui-selected": {
-    color: theme.palette.primary.light,
-  },
-}));
-
-const NavTabsContainer = styled(Stack)({
-    padding: 20
-})
+  textDecoration: 'none'
+}))
 
 export default function Navbar() {
-  const [value, setValue] = useState(0);
+  const location = useLocation();
+  const [value, setValue] = useState(location.pathname);
 
   const handleChange = useCallback(
-    (_event: React.SyntheticEvent, newValue: number) => {
+    (_event: React.SyntheticEvent, newValue: string) => {
       setValue(newValue);
     },
     [value]
@@ -48,19 +35,26 @@ export default function Navbar() {
 
   return (
     <>
-      <Container maxWidth={"xl"} sx={{pt: 5}}>
-        <Grid container>
-          <Grid item xs={6} display={"grid"} alignItems={"center"}>
+      <Container
+        disableGutters
+        maxWidth={false}
+        sx={{
+          pt: { xl: 5, lg: 5, md: 0 },
+          pl: 10
+        }}
+      >
+        <Grid container columns={{ xs: 4, sm: 8, md: 11 }} justifyContent={"space-between"}>
+          <Grid item xs={4} md={4} sm ={2} display={"grid"} alignItems={"center"}>
             <Avatar src={logo} />
           </Grid>
 
-          <Grid item xs={6} display={"grid"} alignItems={"center"} >
-            <NavTabsContainer alignItems={"end"}>
-              <NavParentTab value={value} onChange={handleChange}>
-                <NavTab disableRipple value={0} label="HOME" />
-                <NavTab disableRipple value={1} label="DESTINATION" />
-                <NavTab disableRipple value={2} label="CREW" />
-                <NavTab disableRipple value={3} label="TECHNOLOGY" />
+          <Grid item xs={6} md={6} sm ={6} display={"grid"} alignItems={"center"}>
+            <NavTabsContainer alignItems={"center"}>
+              <NavParentTab  value={value} onChange={handleChange} >
+                <NavTab disableRipple value={'/home'} label={<NavLink to={'home'} >HOME</NavLink>}/>
+                <NavTab disableRipple value={'/destination'} label={<NavLink to={'destination'} >DESTINATION</NavLink>} />
+                <NavTab disableRipple value={'/crew'} label={<NavLink to={'crew'} >CREW</NavLink>} />
+                <NavTab disableRipple value={'/technology'} label={<NavLink to={'technology'} >TECHNOLOGY</NavLink>} />
               </NavParentTab>
             </NavTabsContainer>
           </Grid>

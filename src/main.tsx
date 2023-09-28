@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
-import { CssBaseline, createTheme } from '@mui/material'
+import { createTheme } from '@mui/material'
 import { ThemeProvider } from '@emotion/react'
 
 const font =  "'Bellefair'";

@@ -12,7 +12,7 @@ export default function Router() {
             {path: 'home', element:<Home/>},
             {path: 'destination', element:<p>destination</p>},
             {path: 'crew', element:<p>crew</p>},
-            {path: 'technolohy', element:<p>crew</p>}
+            {path: 'technology', element:<p>crew</p>}
         ]
     },
   ]);
