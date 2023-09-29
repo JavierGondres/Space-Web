@@ -18,7 +18,7 @@ export default function Home() {
   }, [backgroundImage])
   
   console.log('home')
-  
+
   return (
     <Container disableGutters maxWidth={false}  sx={{paddingInline: {md:20, sm: 20, xs: 3}}}>
       <Grid container rowSpacing={4} justifyContent={"space-between"} alignItems={'end'} minHeight={'50vh'}>
@@ -42,8 +42,8 @@ export default function Home() {
         </Grid>
         <Grid item lg={4} md={5} sm={12} xs={12} display={'grid'}  justifyContent={"center"}>
           <Box borderRadius={100} sx={{
-            width: {lg: '300px', sm: "200px", xs: '150px'},
-            height: {lg: '300px', sm: "200px", xs: '150px'},
+            width: {lg: '300px', sm: "190px", xs: '150px'},
+            height: {lg: '300px', sm: "190px", xs: '150px'},
             backgroundColor: 'white',
             display:'flex',
             justifyContent:'center',
