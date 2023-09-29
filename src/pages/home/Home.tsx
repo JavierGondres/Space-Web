@@ -1,17 +1,19 @@
 import { Box, Container, Grid, Typography, Stack } from "@mui/material";
 import { useEffect } from "react";
-import useBackground from "../../hooks/useBackground";
+import useBackground, { BackgroundProps } from "../../hooks/useBackground";
+
+const backgroundOptions: BackgroundProps = {
+  desktopUrl: 'url("../../public/assets/home/background-home-desktop.jpg")',
+  tabletUrl: 'url("../../public/assets/home/background-home-tablet.jpg")',
+  mobileUrl: 'url("../../public/assets/home/background-home-mobile.jpg")',
+  mediaDesktop: "(max-width:1024px)",
+  mediaTablet: "(max-width:768px)",
+  mediaMobile: "(max-width:425px)",
+};
 
 export default function Home() {
-  const { backgroundImage } = useBackground({
-    desktopUrl: 'url("../../public/assets/home/background-home-desktop.jpg")',
-    tabletUrl: 'url("../../public/assets/home/background-home-tablet.jpg")',
-    mobileUrl: 'url("../../public/assets/home/background-home-mobile.jpg")',
-    mediaDesktop: "(max-width:1024px)",
-    mediaTablet: "(max-width:768px)",
-    mediaMobile: "(max-width:425px)",
-  });
 
+  const { backgroundImage } = useBackground(backgroundOptions)
   
   useEffect(() => {
     document.body.style.backgroundImage = backgroundImage

@@ -35,7 +35,8 @@ const NavLink = styled(Link)(({ theme }) => ({
 
 export default function Navbar() {
   const location = useLocation();
-  const [value, setValue] = useState(location.pathname);
+  const parentPath = location.pathname.split('/').slice(0, -1).join('/');
+  const [value, setValue] = useState(parentPath || location.pathname);
   const [openMenu, setOpenMenu] = useState(false);
   const matches = useMediaQuery("(max-width:600px)");
 

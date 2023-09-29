@@ -1,7 +1,7 @@
 import { useMediaQuery } from '@mui/material';
 import { useEffect, useState } from 'react';
 
-type Props = {
+export interface BackgroundProps {
     desktopUrl: string,
     tabletUrl: string,
     mobileUrl: string,
@@ -10,7 +10,7 @@ type Props = {
     mediaMobile: string,
 }
 
-function useBackground({desktopUrl,tabletUrl,mobileUrl, mediaDesktop, mediaTablet, mediaMobile}: Props) {
+function useBackground({desktopUrl,tabletUrl,mobileUrl, mediaDesktop, mediaTablet, mediaMobile}: BackgroundProps) {
   const [backgroundImage, setBackgroundImage] = useState(desktopUrl);
   const desktopQuery = useMediaQuery(mediaDesktop)
   const tabletQuery = useMediaQuery(mediaTablet)
