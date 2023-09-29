@@ -9,6 +9,7 @@ import {
   Grid,
   IconButton,
   Stack,
+  Typography,
   useMediaQuery,
 } from "@mui/material";
 
@@ -25,22 +26,33 @@ import {
 } from "./navbarComponents/navbarComponents";
 
 import { Icon } from "@iconify/react";
+import useBackground from "../hooks/useBackground";
 
 const NavLink = styled(Link)(({ theme }) => ({
   color: theme.palette.primary.light,
   textDecoration: "none",
 }));
 
+
 export default function Navbar() {
   const location = useLocation();
   const [value, setValue] = useState(location.pathname);
-  const [disableGutters, setDisableGutters] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-  const matches = useMediaQuery("(min-width:600px)");
+  const matches = useMediaQuery("(max-width:600px)");
+  const { backgroundImage } = useBackground({
+    desktopUrl: 'url("../../public/assets/home/background-home-desktop.jpg")',
+    tabletUrl: 'url("../../public/assets/home/background-home-tablet.jpg")',
+    mobileUrl: 'url("../../public/assets/home/background-home-mobile.jpg")',
+    mediaDesktop: "(max-width:1024px)",
+    mediaTablet: "(max-width:768px)",
+    mediaMobile: "(max-width:425px)",
+  });
+
+  console.log('nav')
 
   useEffect(() => {
-    setDisableGutters((prev) => !prev);
-  }, [matches]);
+    document.body.style.backgroundImage = backgroundImage
+  }, [backgroundImage])
 
   const handleMenu = useCallback(() => {
     return setOpenMenu((prev) => !prev);
@@ -54,38 +66,81 @@ export default function Navbar() {
   );
 
   const menu = (
-    <Grid container direction={"row"} alignItems={"start"} pt={5}>
-      <Grid item xs={12} alignItems={"end"}>
+    <Grid container direction={"row"} gap={3} justifyContent={"center"} pt={5}>
+      <Grid item xs={12}>
         <IconButton onClick={handleMenu}>
           <Icon icon="ph:x-bold" color="white" />
         </IconButton>
       </Grid>
-      <Grid item xs={10}>
+      <Grid item xs={12}>
         <NavParentTab
           orientation="vertical"
           value={value}
           onChange={handleChange}
-          sx={{ display: "flex", justifyContent:'start',alignItems: "start", textAlign: 'start'}}
         >
           <NavTab
             disableRipple
             value={"/home"}
-            label={<NavLink to={"home"}>HOME</NavLink>}
+            label={
+              <NavLink
+                to={"home"}
+                sx={{ display: "flex", gap: 1, alignItems: "center" }}
+              >
+                <Typography fontWeight={"bold"}>01</Typography>HOME
+              </NavLink>
+            }
+            sx={{
+              alignItems: "flex-start",
+              fontSize: "1rem",
+            }}
           />
           <NavTab
             disableRipple
             value={"/destination"}
-            label={<NavLink to={"destination"}>DESTINATION</NavLink>}
+            label={
+              <NavLink
+                to={"destination"}
+                sx={{ display: "flex", gap: 1, alignItems: "center" }}
+              >
+                <Typography fontWeight={"bold"}>02</Typography>DESTINATION
+              </NavLink>
+            }
+            sx={{
+              alignItems: "flex-start",
+              fontSize: "1rem",
+            }}
           />
           <NavTab
             disableRipple
             value={"/crew"}
-            label={<NavLink to={"crew"}>CREW</NavLink>}
+            label={
+              <NavLink
+                to={"crew"}
+                sx={{ display: "flex", gap: 1, alignItems: "center" }}
+              >
+                <Typography fontWeight={"bold"}>03</Typography>CREW
+              </NavLink>
+            }
+            sx={{
+              alignItems: "flex-start",
+              fontSize: "1rem",
+            }}
           />
           <NavTab
             disableRipple
             value={"/technology"}
-            label={<NavLink to={"technology"}>TECHNOLOGY</NavLink>}
+            label={
+              <NavLink
+                to={"technology"}
+                sx={{ display: "flex", gap: 1, alignItems: "center" }}
+              >
+                <Typography fontWeight={"bold"}>04</Typography>TECHNOLOGY
+              </NavLink>
+            }
+            sx={{
+              alignItems: "flex-start",
+              fontSize: "1rem",
+            }}
           />
         </NavParentTab>
       </Grid>
@@ -95,7 +150,7 @@ export default function Navbar() {
   return (
     <>
       <Container
-        disableGutters={disableGutters}
+        disableGutters={!matches}
         maxWidth={false}
         sx={{
           pt: { xl: 5, lg: 5, md: 0, xs: 5 },
@@ -140,7 +195,13 @@ export default function Navbar() {
             display={"grid"}
             alignItems={"center"}
             sx={{
-              display: { xs: "none", sm: "none", md: "block", xl: "block" },
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "block",
+                lg: "block",
+                xl: "block",
+              },
             }}
           >
             <NavTabsContainer alignItems={"center"}>
@@ -181,7 +242,7 @@ export default function Navbar() {
           keepMounted: true, // Better open performance on mobile.
         }}
         sx={{
-          display: { xs: "block", sm: "none" },
+          display: { xs: "block", sm: "block", md: "none" },
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
             width: "50vw",
