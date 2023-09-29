@@ -16,7 +16,7 @@ import {
 import logo from "../../public/assets/nav/logo.svg";
 
 // react hooks
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 // Nav components
 import {
@@ -26,7 +26,6 @@ import {
 } from "./navbarComponents/navbarComponents";
 
 import { Icon } from "@iconify/react";
-import useBackground from "../hooks/useBackground";
 
 const NavLink = styled(Link)(({ theme }) => ({
   color: theme.palette.primary.light,
@@ -39,20 +38,7 @@ export default function Navbar() {
   const [value, setValue] = useState(location.pathname);
   const [openMenu, setOpenMenu] = useState(false);
   const matches = useMediaQuery("(max-width:600px)");
-  const { backgroundImage } = useBackground({
-    desktopUrl: 'url("../../public/assets/home/background-home-desktop.jpg")',
-    tabletUrl: 'url("../../public/assets/home/background-home-tablet.jpg")',
-    mobileUrl: 'url("../../public/assets/home/background-home-mobile.jpg")',
-    mediaDesktop: "(max-width:1024px)",
-    mediaTablet: "(max-width:768px)",
-    mediaMobile: "(max-width:425px)",
-  });
 
-  console.log('nav')
-
-  useEffect(() => {
-    document.body.style.backgroundImage = backgroundImage
-  }, [backgroundImage])
 
   const handleMenu = useCallback(() => {
     return setOpenMenu((prev) => !prev);
@@ -147,6 +133,9 @@ export default function Navbar() {
     </Grid>
   );
 
+
+  console.log('nav')
+
   return (
     <>
       <Container
@@ -155,6 +144,7 @@ export default function Navbar() {
         sx={{
           pt: { xl: 5, lg: 5, md: 0, xs: 5 },
           pl: { xl: 10, lg: 10, md: 10, sm: 10, xs: null },
+          mb: 10
         }}
       >
         <Grid
