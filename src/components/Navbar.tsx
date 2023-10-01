@@ -1,6 +1,5 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
-import { styled } from "@mui/material/styles";
 import {
   Avatar,
   Box,
@@ -23,15 +22,10 @@ import {
   NavParentTab,
   NavTab,
   NavTabsContainer,
+  NavLink
 } from "./navbarComponents/navbarComponents";
 
 import { Icon } from "@iconify/react";
-
-const NavLink = styled(Link)(({ theme }) => ({
-  color: theme.palette.primary.light,
-  textDecoration: "none",
-}));
-
 
 export default function Navbar() {
   const location = useLocation();
@@ -86,7 +80,7 @@ export default function Navbar() {
             value={"/destination"}
             label={
               <NavLink
-                to={"destination"}
+                to={"destination/0"}
                 sx={{ display: "flex", gap: 1, alignItems: "center" }}
               >
                 <Typography fontWeight={"bold"}>02</Typography>DESTINATION
@@ -205,7 +199,7 @@ export default function Navbar() {
                 <NavTab
                   disableRipple
                   value={"/destination"}
-                  label={<NavLink to={"destination"}>DESTINATION</NavLink>}
+                  label={<NavLink to={"destination/0"}>DESTINATION</NavLink>}
                 />
                 <NavTab
                   disableRipple

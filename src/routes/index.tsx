@@ -11,12 +11,11 @@ export default function Router() {
       errorElement: <p>Oh no, un error</p>,
       children: [
         { path: "home", element: <Home /> },
-        { path: "destination", element: <Destination />, children: [
-          {path: "moon", element: <p>a</p>},
-          {path: "mars", element: <p>a</p>},
-          {path: "europa", element: <p>a</p>},
-          {path: "titan", element: <p>a</p>},
-        ] },
+        {
+          path: "destination",
+          element: <Destination />,
+          children: [{ path: ":id", element: <p>a</p> }],
+        },
         { path: "crew", element: <p>crew</p> },
         { path: "technology", element: <p>crew</p> },
       ],

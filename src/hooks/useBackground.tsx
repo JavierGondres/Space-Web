@@ -8,13 +8,15 @@ export interface BackgroundProps {
     mediaDesktop: string,
     mediaTablet: string,
     mediaMobile: string,
+    custom?: string
 }
 
-function useBackground({desktopUrl,tabletUrl,mobileUrl, mediaDesktop, mediaTablet, mediaMobile}: BackgroundProps) {
+function useBackground({desktopUrl,tabletUrl,mobileUrl, mediaDesktop, mediaTablet, mediaMobile, custom}: BackgroundProps) {
   const [backgroundImage, setBackgroundImage] = useState(desktopUrl);
   const desktopQuery = useMediaQuery(mediaDesktop)
   const tabletQuery = useMediaQuery(mediaTablet)
   const mobileQuery = useMediaQuery(mediaMobile)
+  const customMediaQuery = useMediaQuery(custom || '(max-width:900px)')
 
     useEffect(() => {
         if(mobileQuery)
@@ -28,7 +30,11 @@ function useBackground({desktopUrl,tabletUrl,mobileUrl, mediaDesktop, mediaTable
 
     console.log('useBack')
   return {
-    backgroundImage
+    backgroundImage,
+    desktopQuery,
+    tabletQuery,
+    mobileQuery,
+    customMediaQuery
   };
 }
 

@@ -1,4 +1,5 @@
 import { Stack, Tab, Tabs, styled } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const NavParentTab = styled(Tabs)(({ theme }) => ({
   "& .MuiTabs-indicator": {
@@ -21,3 +22,8 @@ export const NavTabsContainer = styled(Stack)({
   webkitBackdropFilter: "blur(25px)",
   backgroundColor: "rgba(255, 255, 255, 0.04)",
 });
+
+export const NavLink = styled(Link)(({ theme }) => ({
+  color: theme.palette.primary.light,
+  textDecoration: "none",
+}));
