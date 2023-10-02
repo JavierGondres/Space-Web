@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Home from "../pages/home/Home";
 import Destination from "../pages/home/Destination";
+import Crew from "../pages/home/Crew";
 
 export default function Router() {
   return createBrowserRouter([
@@ -16,7 +17,7 @@ export default function Router() {
           element: <Destination />,
           children: [{ path: ":id", element: <p>a</p> }],
         },
-        { path: "crew", element: <p>crew</p> },
+        { path: "crew", element: <Crew/>},
         { path: "technology", element: <p>crew</p> },
       ],
     },
